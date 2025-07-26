@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure PIN Authentication</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --success: #4cc9f0;
+            --error: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--dark);
+            padding: 20px;
+        }
+
+        .auth-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .subtitle {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .pin-input {
+            display: flex;
+            justify-content: space-between;
+            margin: 2rem 0;
+            gap: 10px;
+        }
+
+        .pin-input input {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            transition: var(--transition);
+            outline: none;
+            caret-color: var(--primary);
+        }
+
+        .pin-input input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .pin-input input.filled {
+            border-color: var(--primary);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            min-height: 20px;
+        }
+
+        .success {
+            color: var(--success);
+        }
+
+        .error {
+            color: var(--error);
+        }
+
+        .biometric-option {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .biometric-btn {
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .biometric-btn:hover {
+            color: var(--primary-dark);
+        }
+
+        .biometric-btn i {
+            font-size: 1.2rem;
+        }
+
+        .attempts {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 30px 20px;
+            }
+            
+            .pin-input input {
+                width: 45px;
+                height: 55px;
+                font-size: 1.3rem;
+            }
+        }
+
+        /* Animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
+        }
+
+        .shake {
+            animation: shake 0.4s ease-in-out;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="icon" href="./bahan-navbar/logo.png">
+</head>
+<body>
+    <div class="auth-container" id="authContainer">
+        <h1>autentikasi 2 faktor</h1>
+        <p class="subtitle">masukkan 6 digit kode pin anda</p>
+        
+        <div class="pin-input">
+            <input type="password" maxlength="1" id="pin1" inputmode="numeric" pattern="[0-9]*" 
+                   oninput="moveToNext(this, 'pin2')" onkeydown="handleBackspace(this, '')" autocomplete="off">
+            <input type="password" maxlength="1" id="pin2" inputmode="numeric" pattern="[0-9]*" 
+                   oninput="moveToNext(this, 'pin3')" onkeydown="handleBackspace(this, 'pin1')" autocomplete="off">
+            <input type="password" maxlength="1" id="pin3" inputmode="numeric" pattern="[0-9]*" 
+                   oninput="moveToNext(this, 'pin4')" onkeydown="handleBackspace(this, 'pin2')" autocomplete="off">
+            <input type="password" maxlength="1" id="pin4" inputmode="numeric" pattern="[0-9]*" 
+                   oninput="moveToNext(this, 'pin5')" onkeydown="handleBackspace(this, 'pin3')" autocomplete="off">
+            <input type="password" maxlength="1" id="pin5" inputmode="numeric" pattern="[0-9]*" 
+                   oninput="moveToNext(this, 'pin6')" onkeydown="handleBackspace(this, 'pin4')" autocomplete="off">
+            <input type="password" maxlength="1" id="pin6" inputmode="numeric" pattern="[0-9]*" 
+                   oninput="moveToNext(this, 'submit')" onkeydown="handleBackspace(this, 'pin5')" autocomplete="off">
+        </div>
+        
+        <button class="submit-btn" id="submit" onclick="validatePin()" disabled>Continue</button>
+        
+        <div class="message" id="message"></div>
+        <div class="attempts" id="attempts">sisa kesempatan: 3</div>
+        
+        <div class="biometric-option">
+            <button class="biometric-btn" onclick="useBiometric()">
+                <i class="bi bi-fingerprint"></i>
+                gunakan sidik jari anda
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const CORRECT_PIN = "110212";
+        let attemptsLeft = 3;
+        let lockUntil = 0;
+        
+        const pinInputs = document.querySelectorAll('.pin-input input');
+        const submitBtn = document.getElementById('submit');
+        const messageEl = document.getElementById('message');
+        const attemptsEl = document.getElementById('attempts');
+        const authContainer = document.getElementById('authContainer');
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('pin1').focus();
+            updateSubmitButton();
+            
+            if (!isBiometricAvailable()) {
+                document.querySelector('.biometric-option').style.display = 'none';
+            }
+        });
+        
+        function moveToNext(current, nextId) {
+            if (current.value.length === 1) {
+                if (nextId === 'submit') {
+                    current.blur();
+                    submitBtn.focus();
+                } else {
+                    document.getElementById(nextId).focus();
+                }
+                current.classList.add('filled');
+            } else {
+                current.classList.remove('filled');
+            }
+            
+            updateSubmitButton();
+        }
+        
+        function handleBackspace(current, prevId) {
+            if (event.key === 'Backspace' && current.value.length === 0 && prevId) {
+                document.getElementById(prevId).focus();
+            }
+        }
+        
+        function updateSubmitButton() {
+            const isComplete = Array.from(pinInputs).every(input => input.value.length === 1);
+            submitBtn.disabled = !isComplete;
+        }
+        
+        function validatePin() {
+            if (lockUntil > Date.now()) {
+                const remainingTime = Math.ceil((lockUntil - Date.now()) / 1000);
+                showMessage(`Too many attempts. Try again in ${remainingTime} seconds.`, 'error');
+                return;
+            }
+            
+            const enteredPin = Array.from(pinInputs).map(input => input.value).join('');
+            
+            if (enteredPin === CORRECT_PIN) {
+                showMessage("Wih bener tunggu yakk", 'success');
+                pinInputs.forEach(input => input.classList.add('filled'));
+                
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Processing...";
+                
+                setTimeout(() => {
+                    window.location.href = "proses.html";
+                }, 1000);
+            } else {
+                attemptsLeft--;
+                
+                if (attemptsLeft <= 0) {
+                    lockUntil = Date.now() + 30000;
+                    attemptsLeft = 3;
+                    showMessage("Too many incorrect attempts. System locked for 30 seconds.", 'error');
+                    authContainer.classList.add('shake');
+                    
+                    pinInputs.forEach(input => {
+                        input.disabled = true;
+                        input.classList.remove('filled');
+                    });
+                    
+                    setTimeout(() => {
+                        pinInputs.forEach(input => input.disabled = false);
+                        document.getElementById('pin1').focus();
+                        authContainer.classList.remove('shake');
+                        showMessage("You may try again now.", 'success');
+                        updateAttemptsDisplay();
+                    }, 30000);
+                } else {
+                    showMessage("Incorrect PIN. Please try again.", 'error');
+                    authContainer.classList.add('shake');
+                    
+                    // Clear fields and reset focus after animation
+                    setTimeout(() => {
+                        pinInputs.forEach(input => {
+                            input.value = '';
+                            input.classList.remove('filled');
+                        });
+                        document.getElementById('pin1').focus();
+                        authContainer.classList.remove('shake');
+                    }, 400);
+                }
+                
+                updateAttemptsDisplay();
+            }
+        }
+        
+        function updateAttemptsDisplay() {
+            if (lockUntil > Date.now()) {
+                const remainingTime = Math.ceil((lockUntil - Date.now()) / 1000);
+                attemptsEl.textContent = `Try again in ${remainingTime} seconds`;
+                attemptsEl.style.color = 'var(--error)';
+            } else {
+                attemptsEl.textContent = `Attempts remaining: ${attemptsLeft}`;
+                attemptsEl.style.color = attemptsLeft <= 1 ? 'var(--error)' : 'var(--gray)';
+            }
+        }
+        
+        function showMessage(text, type) {
+            messageEl.textContent = text;
+            messageEl.className = 'message ' + type;
+        }
+        
+        function isBiometricAvailable() {            return true;
+        }
+        
+        function useBiometric() {
+            showMessage("Attempting biometric authentication...", '');
+            
+            setTimeout(() => {
+                if (Math.random() > 0.3) { 
+                    showMessage("Biometric authentication successful! Redirecting...", 'success');
+                    
+                    setTimeout(() => {
+                        window.location.href = "proses.html";
+                    }, 1000);
+                } else {
+                    showMessage("Biometric authentication failed. Please try PIN.", 'error');
+                }
+            }, 1500);
+        }
+        
+        document.addEventListener('paste', (e) => {
+            e.preventDefault();
+            const pasteData = e.clipboardData.getData('text').trim();
+            
+            if (/^\d{6}$/.test(pasteData)) {
+                pinInputs.forEach((input, index) => {
+                    input.value = pasteData[index] || '';
+                    input.classList.toggle('filled', pasteData[index] !== undefined);
+                });
+                
+                if (pasteData.length === 6) {
+                    submitBtn.focus();
+                } else {
+                    pinInputs[pasteData.length].focus();
+                }
+                
+                updateSubmitButton();
+            }
+        });
+    </script>
+</body>
+</html>

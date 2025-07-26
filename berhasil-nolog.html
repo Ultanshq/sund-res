@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pesanan Berhasil - Sund Resto</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" />
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="./css/berhasil.css">
+  <link rel="icon" href="./bahan-navbar/logo.png">
+</head>
+<body>
+  <div class="container">
+    <div class="print-only">
+      <img src="./bahan-navbar/logo.png" alt="Sund Resto Logo" style="margin-bottom: 1rem;">
+      <p style="text-align: center; margin-bottom: 1rem;">Jl. Ciomas Permai Blok D15 No. 19, Bogor<br>Telp: (021) 1234567</p>
+    </div>
+    
+    <h1>Pesanan Anda Telah Dibuat!</h1>
+    <p style="text-align: center;">Terima kasih telah memesan di Sund Resto.</p>
+    
+    <div class="order-info">
+      <p><strong>Menu:</strong> <span id="nama-menu">-</span></p>
+      <p><strong>Harga:</strong> Rp <span id="harga-menu">-</span></p>
+      <p><strong>Kode Transaksi:</strong> <span id="kode-transaksi">-</span></p>
+      <p><strong>Tanggal:</strong> <span id="order-date">-</span></p>
+      <p class="print-only"><strong>Status:</strong>  Pesanan Sedang Dikirim...</p>
+    </div>
+    
+    <div class="btn-group">
+      <button class="btn btn-primary" onclick="window.print()">
+        <i data-feather="printer"></i> Cetak Invoice
+      </button>
+      <a href="./dashboard-belum-login.html" class="btn btn-outline">
+        <i data-feather="home"></i> Kembali ke Dashboard
+      </a>
+    </div>
+    
+    <div class="no-print">
+      <h2>Berikan Review & Rating Makanan</h2>
+      
+      <form id="review-form">
+        <label for="rating">Rating:</label>
+        <div class="star-rating">
+          <input type="radio" id="star5" name="rating" value="5" />
+          <label for="star5" title="Sangat Baik">★</label>
+          <input type="radio" id="star4" name="rating" value="4" />
+          <label for="star4" title="Baik">★</label>
+          <input type="radio" id="star3" name="rating" value="3" />
+          <label for="star3" title="Cukup">★</label>
+          <input type="radio" id="star2" name="rating" value="2" />
+          <label for="star2" title="Kurang">★</label>
+          <input type="radio" id="star1" name="rating" value="1" />
+          <label for="star1" title="Buruk">★</label>
+          <span class="rating-text">Pilih rating</span>
+        </div>
+        
+        <label for="review">Review (optional):</label>
+        <textarea id="review" rows="4" placeholder="Tulis ulasan Anda di sini..."></textarea>
+        
+        <button type="submit" class="btn btn-primary">
+          <i data-feather="send"></i> Kirim Review
+        </button>
+      </form>
+      
+      <div id="thankyou-message">
+        <i data-feather="check-circle"></i> Terima kasih atas review Anda!
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer no-print">
+    <div class="footer-contact">
+      <div class="social-icons">
+        <a href="https://wa.me/6285952464007" target="_blank" class="social-link" title="WhatsApp">
+          <i data-feather="message-square" class="social-icon"></i>
+        </a>
+        <a href="tel:‪+62895810990222‬" class="social-link" title="Telepon">
+          <i data-feather="phone" class="social-icon"></i>
+        </a>
+        <a href="mailto:sultandan216@gmail.com" class="social-link" title="Email">
+          <i data-feather="mail" class="social-icon"></i>
+        </a>
+        <a href="https://www.tiktok.com/@handsomenerd_" target="_blank" class="social-link" title="TikTok">
+          <i data-feather="music" class="social-icon"></i>
+        </a>
+        <a href="https://www.instagram.com/handsomenerd_" target="_blank" class="social-link" title="Instagram">
+          <i data-feather="instagram" class="social-icon"></i>
+        </a>
+      </div>
+      <div class="footer-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d990.8531725639893!2d106.75400726950423!3d-6.595521667357961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzUnNDMuOSJTIDEwNsKwNDUnMTYuNyJF!5e0!3m2!1sid!2sid!4v1747558320152!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p class="copyright">© 2025 Sund-Resto – All rights reserved.</p>
+    </div>
+  </footer>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      feather.replace();
+      
+      const nama = localStorage.getItem('namaMenu') || 'Nasi Goreng Spesial';
+      const harga = localStorage.getItem('hargaMenu') || '35.000';
+      
+      function generateTransactionCode() {
+        return 'SUND-' + Math.floor(Math.random() * (999999 - 100000) + 100000);
+      }
+      
+      const kodeTransaksi = generateTransactionCode();
+      const now = new Date();
+      const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      const orderDate = now.toLocaleDateString('id-ID', options);
+      
+      document.getElementById('nama-menu').textContent = nama;
+      document.getElementById('harga-menu').textContent = harga;
+      document.getElementById('kode-transaksi').textContent = kodeTransaksi;
+      document.getElementById('order-date').textContent = orderDate;
+      
+      const stars = document.querySelectorAll('.star-rating input');
+      const ratingText = document.querySelector('.rating-text');
+      
+      stars.forEach(star => {
+        star.addEventListener('change', function() {
+          const ratingValue = this.value;
+          const ratingDescriptions = {
+            '1': '★ - Jahat -SULTAN SI DEVELOPER',
+            '2': '★★ - Kurang',
+            '3': '★★★ - Cukup',
+            '4': '★★★★ - Baik',
+            '5': '★★★★★ - Sangat Baik'
+          };
+          ratingText.textContent = ratingDescriptions[ratingValue];
+        });
+      });
+      
+      const form = document.getElementById('review-form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const rating = document.querySelector('input[name="rating"]:checked')?.value;
+        
+        if (!rating) {
+          alert('Silakan beri rating dengan memilih bintang');
+          return;
+        }
+        
+        const review = document.getElementById('review').value;
+        
+        const reviews = JSON.parse(localStorage.getItem('sund_resto_reviews') || '[]');
+        reviews.push({
+          menu: nama,
+          rating: rating,
+          review: review,
+          tanggal: new Date().toISOString()
+        });
+        localStorage.setItem('sund_resto_reviews', JSON.stringify(reviews));
+        
+        document.getElementById('thankyou-message').style.display = 'block';
+        form.reset();
+        ratingText.textContent = 'Pilih rating';
+        feather.replace();
+      });
+      
+      document.querySelector('.print-btn').addEventListener('click', function() {
+        window.print();
+      });
+    });
+  </script>
+</body>
+</html>date

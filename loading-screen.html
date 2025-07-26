@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SUND RESTO</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+  body, html {
+    height: 100%;
+    margin: 0;
+    background: #ff914d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+    color: white;
+    padding: 0 10px; 
+  }
+
+  .container {
+    display: flex;
+    gap: 0.3em;
+    font-weight: 700;
+    letter-spacing: 0;
+    position: relative;
+    max-width: 100%;
+    flex-wrap: nowrap;
+    font-size: clamp(2.5rem, 8vw, 5rem); 
+  }
+
+  .letter {
+    position: relative;
+    opacity: 0;
+    transform: translateX(-100vw);
+    animation-fill-mode: forwards;
+    white-space: nowrap;
+  }
+
+  @keyframes slideIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+</style>
+<link rel="icon" href="./bahan-navbar/logo.png">
+</head>
+<body>
+
+<div class="container" id="word">
+  <span class="letter">S</span>
+  <span class="letter">U</span>
+  <span class="letter">N</span>
+  <span class="letter">D</span>
+  <span class="letter">&nbsp;</span>
+  <span class="letter">R</span>
+  <span class="letter">E</span>
+  <span class="letter">S</span>
+  <span class="letter">T</span>
+  <span class="letter">O</span>
+</div>
+
+<script>
+  const letters = document.querySelectorAll('.letter');
+
+  letters.forEach((letter, i) => {
+    letter.style.animation = `slideIn 0.6s ease forwards`;
+    letter.style.animationDelay = `${i * 0.4}s`;
+  });
+
+  const totalDuration = letters.length * 0.4 * 1000 + 600;
+  setTimeout(() => {
+    window.location.href = 'landing-page.html';
+  }, totalDuration);
+</script>
+
+</body>
+</html>

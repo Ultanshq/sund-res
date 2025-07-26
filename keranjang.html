@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang - Sund Resto</title>
+  <link rel="stylesheet" href="./css/keranjang.css" />
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="icon" href="./bahan-navbar/logo.png">
+  <style>
+  
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 100;
+      display: none;
+    }
+    .dropdown.active {
+      display: flex;
+    }
+  </style>
+</head>
+<body>
+
+   <nav class="navbar">
+  <div class="navbar-left">
+    <a href="./dashboard-sund_res.html">
+      <img src="./bahan-navbar/logo.png" alt="Sund Resto Logo" class="logo" />
+    </a>
+  </div>
+  <div class="navbar-right">
+    <a href="./keranjang.html" class="nav-icon" title="Keranjang">
+      <i data-feather="shopping-cart"></i>
+    </a>
+    <a href="./prolog-cowo.html" class="nav-icon" title="Profil">
+      <i data-feather="user"></i>
+    </a>
+    <button class="nav-icon" id="menu-button" title="Menu">
+      <i data-feather="menu"></i>
+    </button>
+  </div>
+
+  <div class="dropdown" id="dropdown">
+    <a href="./dashboard-sund_res.html"><i data-feather="home"></i> Beranda</a>
+    <a href="../sund-res/ttg-dlog.html"><i data-feather="info"></i> Tentang Kami</a>
+    <a href="layanan.html"><i data-feather="settings"></i> Layanan</a>
+    <a href="landing-page.html"><i data-feather="log-out"></i> Keluar</a>
+  </div>
+</nav>
+
+  <div class="overlay" id="overlay"></div>
+
+  <main class="container">
+    <div class="keranjang-kosong-box">
+      <h2>Keranjang Anda Kosong</h2>
+      <p>Anda belum memesan apapun.</p>
+    </div>
+
+    <section class="rekomendasi">
+      <h3>Rekomendasi Menu</h3>
+      <div class="card" data-name="Teh Manis Dingin" data-price="2000" data-image="./dashboard/makanan-minuman/te.jpg">
+        <img src="./dashboard/makanan-minuman/te.jpg" alt="Teh Manis" />
+        <h3>Teh Manis Dingin</h3>
+        <p>Rating: 4.9</p>
+        <p class="harga">Rp 2.000</p>
+      </div>
+      <div class="card" data-name="Milk Shake" data-price="10000" data-image="./dashboard/makanan-minuman/How to Make a Milkshake - Easy Recipe Formula - Dessert for Two.jpg">
+        <img src="./dashboard/makanan-minuman/How to Make a Milkshake - Easy Recipe Formula - Dessert for Two.jpg" alt="Milk Shake" />
+        <h3>Milk Shake</h3>
+        <p>Rating: 4.8</p>
+        <p class="harga">Rp 10.000</p>
+      </div>
+      <div class="card" data-name="Pecel Lele" data-price="12000" data-image="./dashboard/makanan-minuman/Lalapan Enak!.jpg">
+        <img src="./dashboard/makanan-minuman/Lalapan Enak!.jpg" alt="Pecel Lele" />
+        <h3>Pecel Lele</h3>
+        <p>Rating: 4.9</p>
+        <p class="harga">Rp 12.000</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-contact">
+      <div class="social-icons">
+        <a href="https://wa.me/6285952464007" target="_blank" class="social-link" title="WhatsApp">
+          <i data-feather="message-square" class="social-icon"></i>
+        </a>
+        <a href="tel:‪+62895810990222‬" class="social-link" title="Telepon">
+          <i data-feather="phone" class="social-icon"></i>
+        </a>
+        <a href="mailto:sultandan216@gmail.com" class="social-link" title="Email">
+          <i data-feather="mail" class="social-icon"></i>
+        </a>
+        <a href="https://www.tiktok.com/@handsomenerd_" target="_blank" class="social-link" title="TikTok">
+          <i data-feather="music" class="social-icon"></i>
+        </a>
+        <a href="https://www.instagram.com/handsomenerd_" target="_blank" class="social-link" title="Instagram">
+          <i data-feather="instagram" class="social-icon"></i>
+        </a>
+      </div>
+      <div class="footer-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d990.8531725639893!2d106.75400726950423!3d-6.595521667357961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzUnNDMuOSJTIDEwNsKwNDUnMTYuNyJF!5e0!3m2!1sid!2sid!4v1747558320152!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p class="copyright">© 2025 Sund-Resto – All rights reserved.</p>
+    </div>
+  </footer>
+
+<div class="modal-overlay" id="modalOverlay">
+    <div class="food-modal">
+      <div class="modal-header">
+        <img src="" class="food-image" id="modalFoodImage" alt="Food Image">
+        <div class="badge-container">
+          <span class="badge best-seller">Gratis Ongkir</span>
+          <span class="badge spicy">Enak</span>
+        </div>
+        <button class="close-btn" id="modalCloseBtn">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <h2 class="food-title" id="modalFoodTitle">Nama Makanan</h2>
+        <div class="food-price" id="modalFoodPrice">Rp 25.000</div>
+        <p class="food-desc" id="modalFoodDesc">Deskripsi makanan yang menggugah selera...</p>
+        
+        <div class="customize-section">
+          <h3 class="section-title">Level Pedas</h3>
+          <div class="options-grid">
+            <button class="option-btn">Mild</button>
+            <button class="option-btn active">Medium</button>
+            <button class="option-btn">Hot</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button class="action-btn add-to-cart" id="addToCartBtn">
+          <i data-feather="shopping-cart"></i> Keranjang
+        </button>
+        <button class="action-btn order-now" id="orderNowBtn">
+          <i data-feather="zap"></i> Pesan Sekarang
+        </button>
+      </div>
+    </div>
+  </div>
+
+ 
+</body>
+<script src="./js/keranjang.js"></script>
+</html>

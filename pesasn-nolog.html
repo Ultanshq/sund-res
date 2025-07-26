@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pemesanan - Sund Resto</title>
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="stylesheet" href="./css/pesan-nolog.css">
+  <link rel="icon" href="./bahan-navbar/logo.png">
+</head>
+<body>
+
+     <nav class="navbar">
+  <div class="navbar-left">
+    <a href="./dashboard-belum-login.html">
+      <img src="./bahan-navbar/logo.png" alt="Sund Resto Logo" class="logo" />
+    </a>
+  </div>
+  <div class="navbar-right">
+    <a href="./keranjang-nolog.html" class="nav-icon">
+      <i data-feather="shopping-cart"></i>
+    </a>
+    <a href="./profilom.html" class="nav-icon">
+      <i data-feather="user"></i>
+    </a>
+    <button class="nav-icon" id="menu-button">
+      <i data-feather="menu"></i>
+    </button>
+  </div>
+
+  <div class="dropdown" id="dropdown">
+    <a href="./dashboard-belum-login.html"><i data-feather="home"></i> Beranda</a>
+    <a href="../sund-res/ttg-lomlog.html"><i data-feather="info"></i> Tentang Kami</a>
+    <a href="landing-page.html"><i data-feather="log-out"></i> Keluar</a>
+  </div>
+</nav>
+
+ <div class="login-recommendation">
+  <div class="recommendation-content">
+    <span class="close-recommendation">&times;</span>
+    <p>Dapatkan akses penuh dengan login atau daftar sekarang!</p>
+    <div class="recommendation-buttons">
+      <a href="./login.html" class="btn-login">Masuk</a>
+      <a href="./register.html" class="btn-register">Daftar</a>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="menu-image-container">
+    <img id="menu-image" src="" alt="Gambar Menu">
+  </div>
+  
+  <label for="kecamatan">Pilih Kecamatan di Bogor:</label><br>
+  <select id="kecamatan" required>
+    <option value="">-- Pilih Kecamatan --</option>
+    <option value="Bogor Tengah">Bogor Tengah</option>
+    <option value="Bogor Utara">Bogor Utara</option>
+    <option value="Bogor Selatan">Bogor Selatan</option>
+    <option value="Bogor Timur">Bogor Timur</option>
+    <option value="Bogor Barat">Bogor Barat</option>
+    <option value="Tanah Sareal">Tanah Sareal</option>
+  </select><br><br>
+
+  <label for="alamat">Alamat Lengkap:</label><br>
+  <input type="text" id="alamat" placeholder="Contoh: Jl. Melati No. 10"><br><br>
+
+  <label for="patokan">Patokan Lokasi:</label><br>
+  <input type="text" id="patokan" placeholder="Contoh: Dekat SDN 1 Bogor"><br><br>
+  
+  <div class="voucher-container">
+    <label for="voucher">Kode Voucher (Jika Ada):</label><br>
+    <div class="voucher-input-group">
+      <input type="text" id="voucher" placeholder="Masukkan kode voucher">
+      <button id="confirm-voucher" onclick="applyVoucher()">Konfirmasi</button>
+    </div>
+    <p id="voucher-message"></p>
+  </div>
+  
+  <h3>Detail Pembayaran</h3>
+  <p>Menu: <span id="nama-menu"></span></p>
+  <p>Harga: 
+    <span id="harga-display">
+      <span id="original-price">Rp <span id="harga-menu"></span></span>
+      <span id="discounted-price" style="display:none;"></span>
+    </span>
+  </p>
+
+  <h3>Metode Pembayaran</h3>
+  <div class="payment-options">
+    <div class="payment-card" onclick="selectPayment('COD')">
+      <img src="./dashboard/makanan-minuman/cod.png" alt="COD">
+      <p>COD (Bayar di Tempat)</p>
+    </div>
+    <div class="payment-card" onclick="selectPayment('Gopay')">
+      <img src="./dashboard/makanan-minuman/GoPay Logo.jpeg" alt="Gopay">
+      <p>Gopay</p>
+    </div>
+    <div class="payment-card" onclick="selectPayment('OVO')">
+      <img src="./dashboard/makanan-minuman/Download Logo OVO Vector Format AI.jpeg" alt="OVO">
+      <p>OVO</p>
+    </div>
+    <div class="payment-card" onclick="selectPayment('DANA')">
+      <img src="./dashboard/makanan-minuman/download (5).jpeg" alt="DANA">
+      <p>DANA</p>
+    </div>
+    <div class="payment-card" onclick="selectPayment('ShopeePay')">
+      <img src="./dashboard/makanan-minuman/Shopee terá cupom de frete grátis sem valor mínimo até 11 de outubro.jpeg" alt="ShopeePay">
+      <p>ShopeePay</p>
+    </div>
+  </div>
+  
+  <input type="hidden" id="metode-bayar" required>
+  <input type="hidden" id="harga-asli">
+  <input type="hidden" id="harga-diskon">
+
+  <button onclick="bayar()">Bayar Sekarang</button>
+</div>
+
+<footer class="footer">
+  <div class="footer-contact">
+    <div class="social-icons">
+      <a href="https://wa.me/6285952464007" target="_blank" class="social-link" title="WhatsApp">
+        <i data-feather="message-square" class="social-icon"></i>
+      </a>
+      <a href="tel:‪+62895810990222‬" class="social-link" title="Telepon">
+        <i data-feather="phone" class="social-icon"></i>
+      </a>
+      <a href="mailto:sultandan216@gmail.com" class="social-link" title="Email">
+        <i data-feather="mail" class="social-icon"></i>
+      </a>
+      <a href="https://www.tiktok.com/@handsomenerd_" target="_blank" class="social-link" title="TikTok">
+        <i data-feather="music" class="social-icon"></i>
+      </a>
+      <a href="https://www.instagram.com/handsomenerd_" target="_blank" class="social-link" title="Instagram">
+        <i data-feather="instagram" class="social-icon"></i>
+      </a>
+    </div>
+    <div class="footer-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d990.8531725639893!2d106.75400726950423!3d-6.595521667357961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzUnNDMuOSJTIDEwNsKwNDUnMTYuNyJF!5e0!3m2!1sid!2sid!4v1747558320152!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <p class="copyright">© 2025 Sund-Resto – All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  let originalPrice = 0;
+  let discountApplied = false;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    feather.replace();
+    
+    const params = new URLSearchParams(window.location.search);
+    const nama = params.get('nama');
+    const harga = params.get('harga');
+    const gambar = params.get('gambar');
+
+    document.getElementById('nama-menu').textContent = nama;
+    document.getElementById('harga-menu').textContent = harga;
+    document.getElementById('harga-asli').value = harga;
+    originalPrice = parseInt(harga.replace(/\D/g, '')); // Simpan harga asli sebagai number
+    
+    if (gambar) {
+      document.getElementById('menu-image').src = gambar;
+    }
+    
+    localStorage.setItem('namaMenu', nama);
+    localStorage.setItem('hargaMenu', harga);
+    if (gambar) {
+      localStorage.setItem('gambarMenu', gambar);
+    }
+  });
+
+  
+
+  function selectPayment(method) {
+    document.getElementById('metode-bayar').value = method;
+    const cards = document.querySelectorAll('.payment-card');
+    cards.forEach(card => {
+      card.classList.remove('selected');
+      if (card.querySelector('p').textContent.includes(method)) {
+        card.classList.add('selected');
+      }
+    });
+  }
+
+  function applyVoucher() {
+    const voucherCode = document.getElementById('voucher').value;
+    const voucherMessage = document.getElementById('voucher-message');
+    const originalPriceElement = document.getElementById('original-price');
+    const discountedPriceElement = document.getElementById('discounted-price');
+    
+    if (!voucherCode) {
+      voucherMessage.textContent = 'Masukkan kode voucher terlebih dahulu';
+      voucherMessage.style.color = 'red';
+      return;
+    }
+    
+    if (discountApplied) {
+      originalPriceElement.style.display = 'inline';
+      discountedPriceElement.style.display = 'none';
+      originalPriceElement.style.textDecoration = 'none';
+      discountApplied = false;
+    }
+    
+    let discount = 0;
+    let validVoucher = false;
+    
+
+    const validVouchers = {
+      'DISKON10': 0.1,  // Diskon 10%
+      'SUNDRESTO': 0.2,  // Diskon 20%
+      'LOGINDULU' : 0.01 // diskon 1%
+    };
+    
+    if (validVouchers.hasOwnProperty(voucherCode)) {
+      discount = validVouchers[voucherCode];
+      validVoucher = true;
+    }
+    
+    if (validVoucher) {
+      const discountedPrice = originalPrice * (1 - discount);
+      discountedPriceElement.textContent = `Rp ${discountedPrice.toLocaleString('id-ID')}`;
+      discountedPriceElement.style.display = 'inline';
+      originalPriceElement.style.textDecoration = 'line-through';
+      originalPriceElement.style.color = '#888';
+      
+      document.getElementById('harga-diskon').value = discountedPrice;
+      discountApplied = true;
+      
+      voucherMessage.textContent = `Kode voucher berhasil diterapkan! Diskon ${discount * 100}%`;
+      voucherMessage.style.color = 'green';
+    } else {
+      voucherMessage.textContent = 'Kode voucher tidak valid';
+      voucherMessage.style.color = 'red';
+    }
+  }
+
+  function bayar() {
+    const kecamatan = document.getElementById('kecamatan').value;
+    const alamat = document.getElementById('alamat').value;
+    const patokan = document.getElementById('patokan').value;
+    const metodeBayar = document.getElementById('metode-bayar').value;
+
+    if (!kecamatan || !alamat || !patokan || !metodeBayar) {
+      alert("Mohon lengkapi semua data pengiriman dan pembayaran.");
+      return;
+    }
+
+    const voucher = document.getElementById('voucher').value;
+    localStorage.setItem('metodeBayar', metodeBayar);
+    
+    if (discountApplied) {
+      const discountedPrice = document.getElementById('harga-diskon').value;
+      localStorage.setItem('hargaMenu', discountedPrice);
+    } else {
+      const originalPrice = document.getElementById('harga-asli').value;
+      localStorage.setItem('hargaMenu', originalPrice);
+    }
+    
+    if (voucher) {
+      localStorage.setItem('kodeVoucher', voucher);
+    }
+
+    
+    window.location.href = "proses-nolog.html";
+  }
+</script>
+<script src="./js/menu-nolog.js"></script>
+
+</body>
+</html>

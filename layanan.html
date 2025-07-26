@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layanan - Sund-Resto</title>
+    <link rel="stylesheet" href="./css/layanan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./bahan-navbar/logo.png">
+</head>
+<body>
+   <nav class="navbar">
+  <div class="navbar-left">
+    <a href="./dashboard-sund_res.html">
+      <img src="./bahan-navbar/logo.png" alt="Sund Resto Logo" class="logo" />
+    </a>
+  </div>
+  <div class="navbar-right">
+    
+    <a href="./keranjang.html" class="nav-icon" title="Keranjang">
+      <i data-feather="shopping-cart"></i>
+    </a>
+    <a href="./prolog-cowo.html" class="nav-icon" title="Profil">
+      <i data-feather="user"></i>
+    </a>
+    <button class="nav-icon" id="menu-button" title="Menu">
+      <i data-feather="menu"></i>
+    </button>
+  </div>
+
+  <div class="dropdown" id="dropdown">
+    <a href="./dashboard-sund_res.html"><i data-feather="home"></i> Beranda</a>
+    <a href="../sund-res/ttg-dlog.html"><i data-feather="info"></i> Tentang Kami</a>
+    <a href="layanan.html"><i data-feather="settings"></i> Layanan</a>
+    <a href="landing-page.html"><i data-feather="log-out"></i> Keluar</a>
+  </div>
+</nav>
+  <header class="page-header">
+    <h1>Layanan Kami</h1>
+    <p>Kami menyediakan berbagai layanan untuk memenuhi kebutuhan kuliner Anda</p>
+  </header>
+  
+  <main class="container">
+    <section class="services-section">
+      <div class="service-cards">
+        <div class="service-card">
+          <i class="fas fa-utensils"></i>
+          <h3>Makan di Tempat</h3>
+          <p>Nikmati hidangan kami langsung di restoran dengan suasana yang nyaman dan bersih.</p>
+        </div>
+        
+        <div class="service-card">
+          <i class="fas fa-truck"></i>
+          <h3>Pesanan Antar</h3>
+          <p>Pesan makanan favorit Anda dan kami akan mengantarkannya ke alamat Anda.</p>
+        </div>
+        
+        <div class="service-card">
+          <i class="fas fa-calendar-alt"></i>
+          <h3>Catering</h3>
+          <p>Layanan catering untuk acara khusus dengan menu yang bisa disesuaikan.</p>
+        </div>
+        
+        <div class="service-card">
+          <i class="fas fa-gift"></i>
+          <h3>Paket Spesial</h3>
+          <p>Paket makanan khusus untuk berbagai acara dan kebutuhan.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section class="contact-section">
+      <h2>Hubungi Kami</h2>
+      <div class="contact-container">
+        <div class="map-container">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d990.8531725639893!2d106.75400726950423!3d-6.595521667357961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzUnNDMuOSJTIDEwNsKwNDUnMTYuNyJF!5e0!3m2!1sid!2sid!4v1747558320152!5m2!1sid!2sid" 
+                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <form action="#" method="POST" class="contact-form">
+          <div class="form-group">
+            <div class="input-group">
+              <i data-feather="user"></i>
+              <input type="text" placeholder="Nama Lengkap" required>
+            </div>
+
+            <div class="input-group">
+              <i data-feather="mail"></i>
+              <input type="email" placeholder="Alamat Email" required>
+            </div>
+
+            <div class="input-group">
+              <i data-feather="phone"></i>
+              <input type="tel" placeholder="Nomor Telepon" required>
+            </div>
+            
+            <div class="input-group">
+              <i data-feather="edit"></i>
+              <select required>
+                <option value="" disabled selected>Pilih Layanan</option>
+                <option value="dine-in">Makan di Tempat</option>
+                <option value="delivery">Pesanan Antar</option>
+                <option value="catering">Catering</option>
+                <option value="special">Paket Spesial</option>
+                <option value="other">Lainnya</option>
+              </select>
+            </div>
+            
+            <div class="input-group textarea-group">
+              <i data-feather="message-square"></i>
+              <textarea placeholder="Pesan Anda" rows="4" required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Kirim Pesan</button>
+          </div>
+        </form>
+      </div>
+    </section>
+    
+    <section class="faq-section">
+      <h2>Pertanyaan Umum</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Bagaimana cara memesan makanan untuk dibawa pulang?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Anda bisa memesan melalui website kami, aplikasi, atau langsung menghubungi nomor telepon restoran. Pesanan akan siap dalam waktu 15-30 menit tergantung kompleksitas menu.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Berapa jarak maksimal untuk layanan pengantaran?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Kami melayani pengantaran dalam radius 10 km dari lokasi restoran dengan biaya pengantaran yang bervariasi tergantung jarak.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <h3>Siapa yang membuat web sund resto yang keren dan interaktif ini?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Sultan dan kawan-kawan yang imajinatif nan keren.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-section about">
+        <img src="./bahan-navbar/logo.png" alt="Sund-Resto Logo" class="footer-logo">
+        <p>Sund-Resto menyajikan hidangan tradisional Sunda dengan cita rasa autentik dan bahan-bahan berkualitas.</p>
+        <div class="contact">
+          <span><i class="fas fa-map-marker-alt"></i> Jl. Contoh No. 123, Kota Bogor</span>
+          <span><i class="fas fa-phone"></i> (0251) 1234567</span>
+          <span><i class="fas fa-envelope"></i> info@sundresto.com</span>
+        </div>
+      </div>
+      
+      <div class="footer-section links">
+        <h3>Tautan Cepat</h3>
+        <ul>
+          <li><a href="./dashboard-sund_res.html">Beranda</a></li>
+          <li><a href="../sund-res/ttg-dlog.html">Tentang Kami</a></li>
+          <li><a href="./layanan.html">Layanan</a></li>
+          
+        </ul>
+      </div>
+      
+      <div class="footer-section hours">
+        <h3>Jam Operasional</h3>
+        <ul>
+          <li><span>Senin - Kamis:</span> 10.00 - 22.00</li>
+          <li><span>Jumat - Sabtu:</span> 10.00 - 23.00</li>
+          <li><span>Minggu:</span> 10.00 - 21.00</li>
+        </ul>
+      </div>
+      
+      <div class="footer-section social">
+        <h3>Ikuti Kami</h3>
+        <div class="social-icons">
+          <a href="https://wa.me/6285952464007" target="_blank" class="social-link" title="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+          <a href="tel:+62895810990222" class="social-link" title="Telepon">
+            <i class="fas fa-phone"></i>
+          </a>
+          <a href="mailto:sultandan216@gmail.com" class="social-link" title="Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+          <a href="https://www.tiktok.com/@handsomenerd_" target="_blank" class="social-link" title="TikTok">
+            <i class="fab fa-tiktok"></i>
+          </a>
+          <a href="https://www.instagram.com/handsomenerd_" target="_blank" class="social-link" title="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+        <div class="newsletter">
+          <h4>Berlangganan Newsletter</h4>
+          <form>
+            <input type="email" placeholder="Alamat Email Anda">
+            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 Sund-Resto. All Rights Reserved. | Designed with <i class="fas fa-heart"></i> by Tim Sund-Resto</p>
+    </div>
+  </footer>
+
+  <script>
+   
+  document.addEventListener('DOMContentLoaded', function() {
+    feather.replace();
+    
+    
+    
+    
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      const icon = question.querySelector('i');
+      
+      question.addEventListener('click', () => {
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            const otherAnswer = otherItem.querySelector('.faq-answer');
+            const otherIcon = otherItem.querySelector('.faq-question i');
+            otherAnswer.classList.remove('active');
+            otherIcon.classList.remove('fa-chevron-up');
+            otherIcon.classList.add('fa-chevron-down');
+          }
+        });
+        
+        
+        answer.classList.toggle('active');
+        if (answer.classList.contains('active')) {
+          icon.classList.remove('fa-chevron-down');
+          icon.classList.add('fa-chevron-up');
+        } else {
+          icon.classList.remove('fa-chevron-up');
+          icon.classList.add('fa-chevron-down');
+        }
+      });
+    });
+    
+    
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Terima kasih! Pesan Anda telah terkirim. Kami akan segera menghubungi Anda.');
+        contactForm.reset();
+      });
+    }
+  });
+</script>
+
+  <script src="./js/menu.js"></script>
+</body>
+</html>

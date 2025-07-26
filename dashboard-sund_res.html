@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sund Resto - Dashboard</title>
+  <link rel="stylesheet" href="./dashboard/css/dashboardreal.css">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <link rel="icon" href="./bahan-navbar/logo.png">
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <nav class="navbar">
+  <div class="navbar-left">
+    <a href="./dashboard-sund_res.html">
+      <img src="./bahan-navbar/logo.png" alt="Sund Resto Logo" class="logo" />
+    </a>
+  </div>
+  <div class="navbar-right">
+    <div class="search-container">
+      <i data-feather="search" class="search-icon"></i>
+      <input type="text" id="search-box" placeholder="Cari makanan..." />
+    </div>
+    <a href="./keranjang.html" class="nav-icon" title="Keranjang">
+      <i data-feather="shopping-cart"></i>
+    </a>
+    <a href="./prolog-cowo.html" class="nav-icon" title="Profil">
+      <i data-feather="user"></i>
+    </a>
+    <button class="nav-icon" id="menu-button" title="Menu">
+      <i data-feather="menu"></i>
+    </button>
+  </div>
+
+  <div class="dropdown" id="dropdown">
+    <a href="./dashboard-sund_res.html"><i data-feather="home"></i> Beranda</a>
+    <a href="../sund-res/ttg-dlog.html"><i data-feather="info"></i> Tentang Kami</a>
+    <a href="layanan.html"><i data-feather="settings"></i> Layanan</a>
+    <a href="landing-page.html"><i data-feather="log-out"></i> Keluar</a>
+  </div>
+</nav>
+
+  <section class="banner-slider">
+    <div class="slides-container">
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Healthy Food" />
+            <div class="banner-text">
+                <h1>Selamat Datang di Sund Resto</h1>
+                <p>Rasakan sensasi makanan lezat kami</p>
+                <button class="cta-button">Pesan Sekarang</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1559847844-5315695dadae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Family Meal" />
+            <div class="banner-text">
+                <h1>Paket Hemat untuk Keluarga</h1>
+                <p>Pilih paket spesial dengan harga terbaik</p>
+                <button class="cta-button">Lihat Paket</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80" alt="Popular Dish" />
+            <div class="banner-text">
+                <h1>Best Seller Favorit Pelanggan</h1>
+                <p>Cicipi menu yang paling banyak diminati</p>
+                <button class="cta-button">Best Seller</button>
+            </div>
+        </div>
+    </div>
+    <div class="dots-container"></div>
+</section>
+
+
+  
+  <section class="horizontal-section" id="menu-makanan">
+    <h2>Menu Makanan</h2>
+    <div class="scroll-container">
+      <div class="card" onclick="goToPembayaran('Nasi Goreng', 13000)">
+        <img src="./dashboard/makanan-minuman/Nasi Goreng.jpg" alt="Nasi Goreng" />
+        <h3>Nasi Goreng</h3>
+        <p class="harga">Rp 13.000</p>
+        <p>Rating: 4.8</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Pecel Lele', 12000)">
+        <img src="./dashboard/makanan-minuman/Lalapan Enak!.jpg" alt="Es Teh Manis" />
+        <h3>Pecel Lele</h3>
+        <p>Rating: 4.9</p>
+        <p class="harga">Rp 12.000</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Milk Shake', 10000)">
+        <img src="./dashboard/makanan-minuman/How to Make a Milkshake - Easy Recipe Formula - Dessert for Two.jpg" alt="Milk Shake" />
+        <h3>Milk Shake</h3>
+        <p class="harga">Rp 10.000</p>
+        <p>Rating: 4.8</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Ayam Bakar', 10000)">
+        <img src="./dashboard/makanan-minuman/Resep AYAM BAKAR KECAP Pak Sahak oleh dapurVY.jpg" alt="Ayam Bakar" />
+        <h3>Ayam Bakar</h3>
+        <p class="harga">Rp 10.000</p>
+        <p>Rating: 4.7</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Teh Manis Dingin', 2000)">
+        <img src="./dashboard/makanan-minuman/te.jpg" alt="Teh Manis" />
+        <h3>Teh Manis Dingin</h3>
+        <p class="harga">Rp 2.000</p>
+        <p>Rating: 4.9</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Mie Goreng Ayam Suwir', 10000)">
+        <img src="./dashboard/makanan-minuman/miegoreng.jpeg" alt="Mie Goreng Ayam Suwir" />
+        <h3>Mie Goreng Ayam Suwir</h3>
+        <p class="harga">Rp 10.000</p>
+        <p>Rating: 4.8</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Ayam Panggang', 14000)">
+        <img src="./dashboard/makanan-minuman/Ayam Bakar IRZAH, Pinang Kunciran.jpeg" alt="" />
+        <h3>Ayam Panggang</h3>
+        <p class="harga">Rp 14.000</p>
+        <p>Rating: 4.6</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Sate Ayam', 17000)">
+        <img src="./dashboard/makanan-minuman/Resep Sate ayam oleh Susana Gracia Cathrine.jpeg" alt="" />
+        <h3>Sate Ayam</h3>
+        <p class="harga">Rp 17.000</p>
+        <p>Rating: 4.8</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Soto Ayam', 12000)">
+        <img src="./dashboard/makanan-minuman/Resep Soto Ayam Santan Gurih dan Cara Mudah Membuatnya!.jpeg" alt="" />
+        <h3>Soto Ayam</h3>
+        <p class="harga">Rp 12.000</p>
+        <p>Rating: 4.5</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Rendang Sapi', 18000)">
+        <img src="./dashboard/makanan-minuman/rendang.jpeg" alt="" />
+        <h3>Rendang Sapi</h3>
+        <p class="harga">Rp 18.000</p>
+        <p>Rating: 4.8</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Bebek Goreng', 15000)">
+        <img src="./dashboard/makanan-minuman/7 Bebek Goreng Paling Garing di Jakarta.jpeg" alt="" />
+        <h3>Bebek Goreng</h3>
+        <p class="harga">Rp 15.000</p>
+        <p>Rating: 4.1</p>
+      </div>
+    </div>
+
+    </div>
+    
+  </section>
+
+ 
+  <section class="horizontal-section" id="paket-makanan">
+    <h2>Paket Makanan</h2>
+    <div class="scroll-container">
+      <!-- Contoh paket -->
+      <div class="card" onclick="goToPembayaran('Paket Hemat 1', 15000)">
+        <img src="./dashboard/makanan-minuman/paket 1.jpeg" alt="Paket Hemat 1" />
+        <h3>Paket Hemat 1</h3>
+        <p>Isi: Nasi Goreng + Ayam + Telur</p>
+        <p class="harga">Rp 15.000</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Paket Hemat 2', 12000)">
+        <img src="./dashboard/makanan-minuman/paket 2.jpeg" alt="Paket Hemat 2" />
+        <h3>Paket Hemat 2</h3>
+        <p>Isi: Nasi Kuning + Lalapan</p>
+        <p class="harga">Rp 12.000</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Paket Hemat 3', 40000)">
+        <img src="./dashboard/makanan-minuman/paket 3.jpeg" alt="Paket Hemat 3" />
+        <h3>Paket Hemat 3</h3>
+        <p>Isi: Makanan High Value</p>
+        <p class="harga">Rp 40.000</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Paket Hemat 4', 20000)">
+        <img src="./dashboard/makanan-minuman/download (6).jpeg" alt="Paket Hemat 3" />
+        <h3>Paket Hemat 4</h3>
+        <p>Isi: Vegetarian Humble</p>
+        <p class="harga">Rp 20.000</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Paket Hemat 5', 30000)">
+        <img src="./dashboard/makanan-minuman/Comfort food recipes that can be made at home.jpeg" alt="Paket Hemat 5" />
+        <h3>Paket Hemat 5</h3>
+        <p>Isi: Beef Steak Crispy</p>
+        <p class="harga">Rp 30.000</p>
+      </div>
+    </div>
+  </section>
+
+  
+ <section class="horizontal-section" id="best-seller">
+    <h2>Best Seller</h2>
+    <div class="scroll-container">
+      <div class="card" onclick="goToPembayaran('Paket Hemat 5', 30000)">
+        <div class="best-seller-label">Best Seller</div>
+        <img src="./dashboard/makanan-minuman/Comfort food recipes that can be made at home.jpeg" alt="Paket Hemat 3" />
+        <h3>Paket Hemat 4</h3>
+        <p>Isi: Beef Steak Crispy</p>
+        <p class="harga">Rp 30.000</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Teh Manis Dingin', 2000)">
+        <div class="best-seller-label">Best Seller</div>
+        <img src="./dashboard/makanan-minuman/te.jpg" alt="Teh Manis" />
+        <h3>Teh Manis Dingin</h3>
+        <p>Rating: 4.9</p>
+        <p class="harga">Rp 2.000</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Milk Shake', 10000)">
+        <div class="best-seller-label">Best Seller</div>
+        <img src="./dashboard/makanan-minuman/How to Make a Milkshake - Easy Recipe Formula - Dessert for Two.jpg" alt="Mie Goreng" />
+        <h3>Milk Shake</h3>
+        <p>Rating: 4.8</p>
+        <p class="harga">Rp 10.000</p>
+      </div>
+      <div class="card" onclick="goToPembayaran('Pecel Lele', 12000, './dashboard/makanan-minuman/Lalapan Enak!.jpg')">
+        <div class="best-seller-label">Best Seller</div>
+        <img src="./dashboard/makanan-minuman/Lalapan Enak!.jpg" alt="Es Teh Manis" />
+        <h3>Pecel Lele</h3>
+        <p>Rating: 4.9</p>
+        <p class="harga">Rp 12.000</p>
+      </div>
+    </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-contact">
+    <div class="social-icons">
+      <a href="https://wa.me/6285952464007" target="_blank" class="social-link" title="WhatsApp">
+        <i data-feather="message-square" class="social-icon"></i>
+      </a>
+      <a href="tel:+62895810990222" class="social-link" title="Telepon">
+        <i data-feather="phone" class="social-icon"></i>
+      </a>
+      <a href="mailto:sultandan216@gmail.com" class="social-link" title="Email">
+        <i data-feather="mail" class="social-icon"></i>
+      </a>
+      <a href="https://www.tiktok.com/@handsomenerd_" target="_blank" class="social-link" title="TikTok">
+        <i data-feather="music" class="social-icon"></i>
+      </a>
+      <a href="https://www.instagram.com/handsomenerd_" target="_blank" class="social-link" title="Instagram">
+        <i data-feather="instagram" class="social-icon"></i>
+      </a>
+    </div>
+    <div class="footer-map">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d990.8531725639893!2d106.75400726950423!3d-6.595521667357961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNsKwMzUnNDMuOSJTIDEwNsKwNDUnMTYuNyJF!5e0!3m2!1sid!2sid!4v1747558320152!5m2!1sid!2sid" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <p class="copyright">© 2025 Sund-Resto – All rights reserved.</p>
+  </div>
+</footer>
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="food-modal">
+      <div class="modal-header">
+        <img src="" class="food-image" id="modalFoodImage" alt="Food Image">
+        <div class="badge-container">
+          <span class="badge best-seller">Gratis Ongkir</span>
+          <span class="badge spicy">Enak</span>
+        </div>
+        <button class="close-btn" id="modalCloseBtn">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <h2 class="food-title" id="modalFoodTitle">Nama Makanan</h2>
+        <div class="food-price" id="modalFoodPrice">Rp 25.000</div>
+        <p class="food-desc" id="modalFoodDesc">Deskripsi makanan yang menggugah selera...</p>
+        
+        <div class="customize-section">
+          <h3 class="section-title">Level Pedas</h3>
+          <div class="options-grid">
+            <button class="option-btn">Mild</button>
+            <button class="option-btn active">Medium</button>
+            <button class="option-btn">Hot</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button class="action-btn add-to-cart" id="addToCartBtn">
+          <i data-feather="shopping-cart"></i> Keranjang
+        </button>
+        <button class="action-btn order-now" id="orderNowBtn">
+          <i data-feather="zap"></i> Pesan Sekarang
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="./js/dahboard-dlog.js"></script>
+</html>
